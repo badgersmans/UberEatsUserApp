@@ -14,7 +14,7 @@ const HomeScreen = () => {
          data={restaurants}
          renderItem={({ item }) => (
             <Link
-                href={{pathname: `/${item.id}`, params: {id: item.id}}}
+                href={{pathname: `/${item.id}`, params: {item: item}}}
             >
                 <RestaurantCard restaurant={item} />
             </Link>
