@@ -1,11 +1,13 @@
-import { View, Text, StyleSheet, Pressable, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
 import { Stack, useRouter, useSearchParams } from "expo-router";
 import { Image } from 'expo-image'
 import restaurants from '../assets/data/restaurants.json';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import DishListItem from '../src/components/DishListItem/DishListItem';
 import { FlashList } from '@shopify/flash-list';
+
 
 const RestaurantDetails = () => {
     const restaurant = restaurants[0];
@@ -15,8 +17,45 @@ const RestaurantDetails = () => {
 
     const {item} = useSearchParams();
     // console.log()
+
+    const ListHeader = () => {
+        return (
+            <>
+                <View style={{position: 'relative'}}>
+                    <Image
+                        style={styles.image}
+                        source={restaurant.image}
+                        placeholder={blurhash}
+                        contentFit="cover"
+                        transition={300}
+                    />
+                </View>
+                <View style={{ marginHorizontal: 20 }}>
+                    <Text style={styles.title}>{restaurant.name}</Text>
+
+                    <View style={styles.ratingContainer}>
+                        <Text style={styles.rating}>
+                            $ • {restaurant.rating.toFixed(1)}
+                        </Text>
+                        <FontAwesome name="star" style={styles.starIcon} />
+                    </View>
+                </View>
+
+                <View 
+                    style={{
+                        borderTopWidth: 1,
+                        borderColor: 'lightgrey',
+                        marginVertical: 20
+                    }}
+                />
+
+                <Text style={styles.menuText}>Menu</Text>
+            </>
+        )
+    }
+
   return (
-    <View>
+    <View style={{flex: 1}}>
         <StatusBar style='light' />
         <Stack.Screen 
             options={{
@@ -24,13 +63,18 @@ const RestaurantDetails = () => {
             }}
         />
 
-    <View style={{position: 'relative'}}>
-        <Image
-            style={styles.image}
-            source={restaurant.image}
-            placeholder={blurhash}
-            contentFit="cover"
-            transition={300}
+        <FlashList 
+            data={restaurant.dishes}
+            renderItem={({item}) => (
+                <DishListItem dish={item} />
+            )}
+            ListHeaderComponent={ListHeader}
+            
+            showsVerticalScrollIndicator={false}
+            estimatedItemSize={20}
+            ItemSeparatorComponent={() => (
+                <View style={{ borderTopWidth: 1, borderColor: 'lightgrey', marginBottom: 20, marginHorizontal: 20 }}/>
+            )}
         />
 
         <Pressable style={({ pressed }) => [
@@ -41,50 +85,6 @@ const RestaurantDetails = () => {
         >
             <Ionicons name="ios-arrow-back" style={styles.backArrow} />
         </Pressable>
-    </View>
-
-    <ScrollView style={{ marginHorizontal: 20 }}>
-        <Text style={styles.title}>{restaurant.name}</Text>
-
-        <View style={styles.ratingContainer}>
-            <Text style={styles.rating}>
-                $ • {restaurant.rating.toFixed(1)}
-            </Text>
-            <FontAwesome name="star" style={styles.starIcon} />
-        </View>
-    </ScrollView>
-
-    <View 
-        style={{
-            borderTopWidth: 1,
-            borderColor: 'lightgrey',
-            marginVertical: 20
-        }}
-    />
-
-    <Text style={styles.menuText}>Menu</Text>
-
-    <View style={{height: 550, marginHorizontal: 20}} >
-
-        <FlashList
-            data={restaurant.dishes}
-            renderItem={({item}) => (
-                <View style={styles.menuContainer}>
-                    <Text style={styles.menuName}>{item.name}</Text>
-                    <Text style={styles.menuDesc}>{item.description}</Text>
-                    <Text style={styles.menuPrice}>RM {item.price}</Text>
-                </View>
-
-            )}
-        
-        showsVerticalScrollIndicator={false}
-        estimatedItemSize={20}
-        ItemSeparatorComponent={() => (
-            <View style={{ borderTopWidth: 1, borderColor: 'lightgrey', marginBottom: 20 }}/>
-        )}
-        />
-    </View>
-
 
     </View>
   )
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     },
     arrowBackground: {
         position: 'absolute',
-        top: '26%',
+        top: '8%',
         left: '8%',
         backgroundColor: '#F5F5F5',
         borderRadius: '20%',
@@ -135,23 +135,6 @@ const styles = StyleSheet.create({
         fontSize: 21,
         color: 'grey',
         marginBottom: 20 
-    },
-    menuContainer: {
-        marginBottom: 20,
-        // backgroundColor: 'green'
-    },
-    menuName: {
-        fontSize: 20,
-        fontWeight: 'bold'
-    },
-    menuDesc: {
-        marginVertical: 10,
-        fontSize: 17,
-        color: 'grey'
-    },
-    menuPrice: {
-        fontWeight: 'bold',
-        fontSize: 18
     },
 })
 
