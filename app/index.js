@@ -2,6 +2,6 @@ import { Redirect } from "expo-router";
 
 export default function Page() {
   return (
-    <Redirect href={`/restaurant/menu/basket`}/>
+    <Redirect href={`/order/123`}/>
   );
 };
