@@ -1,8 +1,7 @@
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import RestaurantCard from '../src/components/RestaurantCard'
 import restaurants from '../assets/data/restaurants.json';
 import { FlashList } from "@shopify/flash-list";
-import { Image } from 'expo-image'
 import { Link } from 'expo-router';
 
 const HomeScreen = () => {
@@ -11,17 +10,17 @@ const HomeScreen = () => {
   return (
     <View style={styles.root}>
         <FlashList
-         data={restaurants}
-         renderItem={({ item }) => (
+        data={restaurants}
+        renderItem={({ item }) => (
             <Link
-                href={{pathname: `/${item.id}`, params: {item: item}}}
+                href={{pathname: `/restaurant/${item.id}`, params: {item: item}}}
             >
                 <RestaurantCard restaurant={item} />
             </Link>
-         )
+        )
         }
-         estimatedItemSize={20}
-         showsVerticalScrollIndicator={false}
+        estimatedItemSize={20}
+        showsVerticalScrollIndicator={false}
        />
     </View>
   )

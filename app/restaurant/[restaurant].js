@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
-import { Stack, useRouter, useSearchParams } from "expo-router";
+import { Stack, useNavigation, useRouter, useSearchParams } from "expo-router";
 import { Image } from 'expo-image'
-import restaurants from '../assets/data/restaurants.json';
+import restaurants from '../../assets/data/restaurants.json';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
-import DishListItem from '../src/components/DishListItem/DishListItem';
+import DishListItem from '../../src/components/DishListItem';
 import { FlashList } from '@shopify/flash-list';
 
 
@@ -14,6 +14,7 @@ const RestaurantDetails = () => {
     const blurhash =
     '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
     const router = useRouter();
+    const navigation = useNavigation();
 
     const {item} = useSearchParams();
     // console.log()
@@ -48,7 +49,6 @@ const RestaurantDetails = () => {
                         marginVertical: 20
                     }}
                 />
-
                 <Text style={styles.menuText}>Menu</Text>
             </>
         )
@@ -66,7 +66,15 @@ const RestaurantDetails = () => {
         <FlashList 
             data={restaurant.dishes}
             renderItem={({item}) => (
-                <DishListItem dish={item} />
+                <Pressable
+                    onPress={
+                        () => router.push({ pathname: `/restaurant/menu/${item.name}`, params: { item: item.name } })
+                    }
+                >
+                    <DishListItem dish={item} />
+                </Pressable>
+                
+                
             )}
             ListHeaderComponent={ListHeader}
             

@@ -12,7 +12,7 @@ export default styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         gap: 8,
-        marginHorizontal: 20
+        marginHorizontal: 20,
     },
     menuName: {
         fontSize: 20,
