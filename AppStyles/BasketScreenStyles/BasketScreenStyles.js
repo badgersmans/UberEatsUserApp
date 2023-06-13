@@ -9,29 +9,9 @@ export default styles = StyleSheet.create({
     },
     name: {
         fontWeight: 'bold',
-        fontSize: 35
-    },
-    desc: {
-        color: 'grey',
-        fontSize: 16,
-        letterSpacing: 0.5,
-        marginVertical: 30
-    },
-    qtyContainer: {
-        // backgroundColor: 'red',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 14,
-    },
-    quantity: {
-        fontSize: 30,
-        // fontWeight: 'bold'
-    },
-    qtyButtons: {
-        fontSize: 50,
-        color: 'black',
-    },
+        fontSize: 26,
+        marginBottom: '8%'
+    },   
     backButton: {
         fontSize: 30,
         color: 'black',
@@ -46,21 +26,43 @@ export default styles = StyleSheet.create({
         backgroundColor: 'black',
         marginTop: 'auto',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
         padding: '6%',
-        // borderRadius: '50%'
     },
     buttonText: {
         color: 'white',
         fontSize: 20,
-        flex: 1,
-        textAlign: 'center',
-        marginLeft: '13%',
-        // backgroundColor: 'red',
     },
     price: {
         color: 'white',
         fontSize: 20,
+    },
+    itemContainer: {
+        flexDirection: 'row',
+        paddingVertical: 10,
+        paddingBottom: 25 ,
+        alignItems: 'center',
+        // backgroundColor: 'red'
+    },
+    itemQuantity: {
+        // marginRight: '2%',
+        borderWidth: 1,
+        borderColor: 'transparent',
+        padding: '1%',
+        paddingHorizontal: '2%',
+        backgroundColor: 'lightgrey',
+        marginRight: '3%',
+        fontSize: 20,
+    },
+    itemName: {
+        fontWeight: '600',
+        fontSize: 18,
+        letterSpacing: 0.25
+    },
+    itemPrice: {
+        marginLeft: 'auto',
+        fontSize: 20,
+        fontWeight: '300'
     },
 });

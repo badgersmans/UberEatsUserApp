@@ -1,6 +1,6 @@
 import { View, Text, SafeAreaView, Pressable } from 'react-native'
 import React, { useState } from 'react'
-import { Stack , useSearchParams} from "expo-router";
+import { Stack , useRouter, useSearchParams} from "expo-router";
 import restaurants from '../../../assets/data/restaurants.json'
 import styles from '../../../AppStyles/MenuScreenStyles/MenuScreenStyles'
 import { SimpleLineIcons, Ionicons } from '@expo/vector-icons';
@@ -10,6 +10,7 @@ const MenuItem = () => {
   // console.log(data.item)
   const dish = restaurants[0].dishes[0];
   const [quantity, setQuantity] = useState(0);
+  const router = useRouter();
 
   const onMinus = () => {
     if(quantity >= 1) {
@@ -34,7 +35,7 @@ const MenuItem = () => {
       }}
     />
 
-      <Ionicons name="arrow-back" style={styles.backButton} />
+      <Ionicons name="arrow-back" style={styles.backButton} onPress={() => router.back()}/>
 
       <Text style={styles.name}>{dish.name}</Text>
       <Text style={styles.desc}>{dish.description}</Text>
