@@ -38,31 +38,4 @@ export default styles = StyleSheet.create({
         color: 'white',
         fontSize: 20,
     },
-    itemContainer: {
-        flexDirection: 'row',
-        paddingVertical: 10,
-        paddingBottom: 25 ,
-        alignItems: 'center',
-        // backgroundColor: 'red'
-    },
-    itemQuantity: {
-        // marginRight: '2%',
-        borderWidth: 1,
-        borderColor: 'transparent',
-        padding: '1%',
-        paddingHorizontal: '2%',
-        backgroundColor: 'lightgrey',
-        marginRight: '3%',
-        fontSize: 20,
-    },
-    itemName: {
-        fontWeight: '600',
-        fontSize: 18,
-        letterSpacing: 0.25
-    },
-    itemPrice: {
-        marginLeft: 'auto',
-        fontSize: 20,
-        fontWeight: '300'
-    },
 });

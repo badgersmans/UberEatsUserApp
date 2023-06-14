@@ -4,20 +4,9 @@ import { Stack , useRouter, useSearchParams} from "expo-router";
 import restaurants from '../../../assets/data/restaurants.json'
 import styles from '../../../AppStyles/BasketScreenStyles/BasketScreenStyles'
 import { FlashList } from '@shopify/flash-list';
-
+import BasketItem from '../../../src/components/BasketItem'
 
 const restaurant = restaurants[0];
-
-const BasketItem = ({ dish, index }) => {
-    return (
-        <View style={styles.itemContainer}>
-            <Text style={styles.itemQuantity}>1</Text>
-            <Text style={styles.itemName}>{dish.name}</Text>
-            <Text style={styles.itemPrice}>{dish.price}</Text>
-        </View>
-    )
-}
-
 
 const Basket = () => {
   const data = useSearchParams();
@@ -46,7 +35,6 @@ const Basket = () => {
             <View style={styles.line}/>
         )}
       />
-
 
       <Pressable style={({ pressed }) => [
         styles.cartButton,
