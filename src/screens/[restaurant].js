@@ -5,7 +5,7 @@ import { Image } from 'expo-image'
 import restaurants from '../../assets/data/restaurants.json';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
-import DishListItem from '../../src/components/DishListItem';
+import DishListItem from '../components/DishListItem';
 import { FlashList } from '@shopify/flash-list';
 
 
@@ -16,8 +16,8 @@ const RestaurantDetails = () => {
     const router = useRouter();
     const navigation = useNavigation();
 
-    const {item} = useSearchParams();
-    // console.log()
+    const {id} = useSearchParams();
+    console.log(`restaurant id: ${id}`)
 
     const ListHeader = () => {
         return (
@@ -31,6 +31,7 @@ const RestaurantDetails = () => {
                         transition={300}
                     />
                 </View>
+                <View style={styles.imageOverlay}/>
                 <View style={{ marginHorizontal: 20 }}>
                     <Text style={styles.title}>{restaurant.name}</Text>
 
@@ -62,13 +63,12 @@ const RestaurantDetails = () => {
                 headerShown: false
             }}
         />
-
         <FlashList 
             data={restaurant.dishes}
             renderItem={({item}) => (
                 <Pressable
                     onPress={
-                        () => router.push({ pathname: `/restaurant/menu/${item.name}`, params: { item: item.name } })
+                        () => router.push({ pathname: `/restaurant/menu/${item.name}`, params: { id: item.id } })
                     }
                 >
                     <DishListItem dish={item} />
@@ -144,6 +144,14 @@ const styles = StyleSheet.create({
         color: 'grey',
         marginBottom: 20 
     },
+    imageOverlay: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        aspectRatio: 16 / 9,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      },
 })
 
 export default RestaurantDetails

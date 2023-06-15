@@ -1,10 +1,10 @@
 import { View, Text, SafeAreaView, Pressable } from 'react-native'
 import React, { useState } from 'react'
-import { Stack , useRouter, useSearchParams} from "expo-router";
-import restaurants from '../../../assets/data/restaurants.json'
-import styles from '../../../AppStyles/BasketScreenStyles/BasketScreenStyles'
+import {  useRouter, useSearchParams} from "expo-router";
+import restaurants from '../assets/data/restaurants.json/'
+import styles from '../AppStyles/BasketScreenStyles/BasketScreenStyles'
 import { FlashList } from '@shopify/flash-list';
-import BasketItem from '../../../src/components/BasketItem'
+import BasketItem from '../src/components/BasketItem'
 
 const restaurant = restaurants[0];
 
@@ -15,12 +15,6 @@ const Basket = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-    <Stack.Screen 
-      options={{
-          headerShown: false
-      }}
-    />
-
       {/* <Ionicons name="arrow-back" style={styles.backButton} onPress={() => router.back()}/> */}
       <Text style={styles.name}>{restaurant.name}</Text>
 

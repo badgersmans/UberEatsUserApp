@@ -1,13 +1,13 @@
 import { View, Text, SafeAreaView, Pressable } from 'react-native'
 import React, { useState } from 'react'
 import { Stack , useRouter, useSearchParams} from "expo-router";
-import restaurants from '../../../assets/data/restaurants.json'
-import styles from '../../../AppStyles/MenuScreenStyles/MenuScreenStyles'
+import restaurants from '../assets/data/restaurants.json'
+import styles from '../AppStyles/MenuScreenStyles/MenuScreenStyles'
 import { SimpleLineIcons, Ionicons } from '@expo/vector-icons';
 
 const MenuItem = () => {
-  const data = useSearchParams();
-  // console.log(data.item)
+  const {id} = useSearchParams();
+  console.log(`dish id: ${id}`)
   const dish = restaurants[0].dishes[0];
   const [quantity, setQuantity] = useState(0);
   const router = useRouter();
@@ -52,7 +52,7 @@ const MenuItem = () => {
         styles.cartButton,
         { opacity: pressed ? 0.8 : 1 },
         ]}
-        onPress={() => {}}
+        onPress={() => router.push('/restaurant/menu/basket')}
       >
         <Text style={styles.buttonText}>{`Add ${quantity} to basket`}</Text>
         <Text style={styles.price}>RM {getTotal()}</Text>

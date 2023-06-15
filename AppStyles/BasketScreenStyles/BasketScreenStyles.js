@@ -5,7 +5,8 @@ export default styles = StyleSheet.create({
         // backgroundColor: 'red',
         flex: 1,
         // justifyContent: 'center',
-        marginHorizontal: 20
+        marginHorizontal: 20,
+        marginTop: '5%'
     },
     name: {
         fontWeight: 'bold',
